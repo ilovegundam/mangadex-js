@@ -1,0 +1,49 @@
+{
+  "name": "mangadex-js",
+  "version": "0.5.0",
+  "author": "ilovegundam",
+  "description": "Convenient access to the MangaDex API",
+  "homepage": "https://github.com/ilovegundam/mangadex-js",
+  "bugs": "https://github.com/ilovegundam/mangadex-js/issues",
+  "license": "MIT",
+  "keywords": [
+    "mangadex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilovegundam/mangadex-js.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "tsc",
+    "test": "vitest run",
+    "build": "tsup"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "cjsInterop": true,
+    "dts": true
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.202",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.21"
+  }
+}
