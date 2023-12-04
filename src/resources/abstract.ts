@@ -1,5 +1,5 @@
 import { ArgumentsInPath, Prettify } from "../utility/types";
-import { AxiosRequestConfig, isAxiosError } from "axios";
+import { AxiosRequestConfig } from "axios";
 import HttpClient from "../http";
 import { merge } from "lodash";
 

@@ -4,12 +4,13 @@
     <a href="#installation">Installation</a> &nbsp;&bull;&nbsp;
     <a href="#usage">Usage</a> &nbsp;&bull;&nbsp;
     <a href="#documentation">Documentation</a> &nbsp;&bull;&nbsp;
-    <a href="#issue">Issue?</a>
+    <a href="#issues">Issues</a>
 </p>
 <div align="center">
 
   <a href="https://www.npmjs.com/package/mangadex-js">![npm](https://img.shields.io/npm/v/mangadex-js)</a>
   <a href="https://github.com/ilovegundam/mangadex-js">![commit](https://img.shields.io/github/last-commit/ilovegundam/mangadex-js/main)</a>
+  <a href="https://github.com/ilovegundam/mangadex-js/actions">![build](https://img.shields.io/github/actions/workflow/status/ilovegundam/mangadex-js/CI.yml)</a>
 
 </div>
 
@@ -68,12 +69,12 @@ client.ApiClient.regenerateSecret();
 
 View MangaDex API documentation <a href="https://api.mangadex.org/docs/">here</a>
 
-## Issue
+## Issues
 
 This repository is activley being improved upon. If you face and issues, feel free to <a href="https://github.com/ilovegundam/mangadex-js/issues/new">open an issue here!</a>
 
 ## Todo
 
-- [ ] Implement MangaDex <a href="https://api.mangadex.org/docs/02-authentication/personal-clients/">personal client authentication</a>
 - [ ] Improve HttpClient and MangaDex tests
-- [ ] Add Resource tests
+- [ ] Add resource tests
+- [ ] Implement MangaDex <a href="https://api.mangadex.org/docs/02-authentication/personal-clients/">personal client authentication</a>

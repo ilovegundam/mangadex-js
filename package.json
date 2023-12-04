@@ -21,7 +21,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "tsc",
-    "test": "vitest run",
+    "test": "vitest run --globals",
     "build": "tsup"
   },
   "tsup": {

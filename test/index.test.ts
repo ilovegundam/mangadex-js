@@ -1,16 +1,15 @@
-import { describe, test, expect } from "vitest";
-import MangaDex from "../src";
+import MangaDex from "../src/index";
 
-describe("HttpClient", () => {
-  const mangadex = new MangaDex();
+describe("MangaDex", () => {
+  const client = new MangaDex();
 
-  test("should correctly set the Authorization header", () => {
-    mangadex.setAccessToken("<MY_TOKEN>");
-    expect(mangadex.http.axios.defaults.headers.common.Authorization).toEqual("Bearer <MY_TOKEN>");
+  it("should correctly set the access token", () => {
+    client.setAccessToken("<MY_TOKEN>");
+    expect(client.http.axios.defaults.headers.common.Authorization).toEqual("Bearer <MY_TOKEN>");
   });
 
-  test("should only return the Authorization headers value", () => {
-    const token = mangadex.getAccessToken();
+  it("should correctly retrieve the access token", () => {
+    const token = client.getAccessToken();
     expect(token).toEqual("<MY_TOKEN>");
   });
 });

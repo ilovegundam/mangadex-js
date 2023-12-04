@@ -1,22 +1,18 @@
-import { describe, expect, test } from "vitest";
 import HttpClient from "../src/http";
 
 describe("HttpClient", () => {
-  test("should merge options with defaults", () => {
-    const http = new HttpClient({
-      baseURL: "https://example.com",
-      headers: {
-        "User-Agent": "mangadex-js/tests",
-        "Content-Encoding": "gzip",
-      },
+  it("should merge options with defaults", () => {
+    const client = new HttpClient({
+      params: { includes: ["author", "manga", "cover_art"] },
+      headers: { "User-Agent": "mangadex-js/test" },
     });
 
-    expect(http.options).toEqual({
-      baseURL: "https://example.com",
+    expect(client.options).toEqual({
+      baseURL: "https://api.mangadex.org/",
+      params: { includes: ["author", "manga", "cover_art"] },
       headers: {
-        "User-Agent": "mangadex-js/tests",
-        "Content-Encoding": "gzip",
         "Content-Type": "application/json",
+        "User-Agent": "mangadex-js/test",
       },
     });
   });
