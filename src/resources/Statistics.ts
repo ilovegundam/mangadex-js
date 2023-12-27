@@ -4,30 +4,30 @@ export default class StatisticsResource extends BaseResource {
   /**
    * Get statistics about the specified chapter.
    */
-  chapter = this.request("/statistics/chapter/{id}", false, {});
+  chapter = this.spec("/statistics/chapter/{id}", "GET").build();
 
   /**
    * Get statistics about the specified chapters.
    */
-  chapters = this.request("/statistics/chapter", false, {});
+  chapters = this.spec("/statistics/chapter", "GET").build();
 
   /**
    * Get statistics about the specified scanlation group.
    */
-  scanlationGroup = this.request("/statistics/group/{id}", false, {});
+  scanlationGroup = this.spec("/statistics/group/{id}", "GET").build();
 
   /**
    * Get statistics about the specified scanlation groups.
    */
-  scanlationGroups = this.request("/statistics/group", false, {});
+  scanlationGroups = this.spec("/statistics/group", "GET").build();
 
   /**
    * Get statistics about the specified manga.
    */
-  manga = this.request("/statistics/manga/{id}", false, {});
+  manga = this.spec("/statistics/manga/{id}", "GET").build();
 
   /**
    * Get statistics about the specified mangas.
    */
-  mangas = this.request("/statistics/manga", false, {});
+  mangas = this.spec("/statistics/manga", "GET").build();
 }

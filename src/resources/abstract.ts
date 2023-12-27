@@ -1,49 +1,52 @@
 import { ArgumentsInPath, Prettify } from "../utility/types";
-import { AxiosRequestConfig } from "axios";
+import { HttpMethod, DataMathod } from "../types/http";
+import { Axios, AxiosRequestConfig } from "axios";
 import HttpClient from "../http";
-import { merge } from "lodash";
+import merge from "lodash/merge";
 
 export class BaseResource {
   constructor(protected http: HttpClient) {}
 
-  protected request<
-    R = any,
-    Q = any,
-    P extends string = string,
-    D extends boolean = false,
-    O = ArgumentsInPath<P>
-  >(path: P, data: D, spec: AxiosRequestConfig & { supressError?: boolean }) {
-    return async <T = R, S = Q>(
-      ...args: [
-        ...([keyof O] extends [never] ? [] : [path: Prettify<O>]),
-        ...(D extends true ? [data: S] : []),
-        params?: AxiosRequestConfig["params"],
-        config?: AxiosRequestConfig
-      ]
-    ): Promise<T> => {
-      spec.url = path;
+  protected spec<E extends string, M extends HttpMethod, _AIP = ArgumentsInPath<E>>(
+    endpoint: E,
+    method: M
+  ) {
+    return {
+      build: <X = any, Y = any>(req: AxiosRequestConfig = {}) => {
+        return async <T = X, D = Y>(
+          ...args: [
+            ...([keyof _AIP] extends [never] ? [] : [path: Prettify<_AIP>]),
+            ...(M extends DataMathod ? [data: D] : []),
+            params?: AxiosRequestConfig["params"],
+            config?: AxiosRequestConfig
+          ]
+        ): Promise<T> => {
+          req.url = endpoint;
+          req.method = method;
 
-      if ((path.match(/\{\w+\}/g) ?? []).length > 0) {
-        for (const [key, value] of Object.entries(args.shift())) {
-          spec.url = spec.url?.replace(`{${key}}`, String(value));
-        }
-      }
+          if ((endpoint.match(/\{\w+\}/g) ?? []).length > 0) {
+            for (const [key, value] of Object.entries(args.shift())) {
+              req.url = req.url?.replace(`{${key}}`, String(value));
+            }
+          }
 
-      if (data) {
-        spec = merge(spec, { data: args.shift() });
-      }
+          if (method === "POST" || method === "PUT" || method === "PATCH") {
+            req.data = args.shift();
+          }
 
-      const [params, config] = args;
+          const [params, config] = args;
 
-      if (params) {
-        spec = merge(spec, { params });
-      }
+          if (params) {
+            req = merge(req, { params });
+          }
 
-      if (config) {
-        spec = merge(spec, config);
-      }
+          if (config) {
+            req = merge(req, config);
+          }
 
-      return (await this.http.request(spec)).data;
+          return (await this.http.request<T>(req)).data;
+        };
+      },
     };
   }
 }

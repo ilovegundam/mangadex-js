@@ -4,23 +4,22 @@ export default class UploadResource extends BaseResource {
   /**
    * Get the current upload session associated with the current token.
    */
-  current = this.request("/upload", false, {});
+  current = this.spec("/upload", "GET").build();
 
   /**
    * Start an upload session.
    */
-  start = this.request("/upload/begin", true, { method: "POST" });
+  start = this.spec("/upload/begin", "POST").build();
 
   /**
    * Start an edit chapter session.
    */
-  edit = this.request("/upload/begin/{id}", true, { method: "POST" });
+  edit = this.spec("/upload/begin/{id}", "POST").build();
 
   /**
    * Upload images to the specified upload session.
    */
-  upload = this.request("/upload/{id}", true, {
-    method: "POST",
+  upload = this.spec("/upload/{id}", "POST").build({
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -29,20 +28,20 @@ export default class UploadResource extends BaseResource {
   /**
    * Abandon the specified upload session.
    */
-  abandon = this.request("/upload/{id}", false, { method: "DELETE" });
+  abandon = this.spec("/upload/{id}", "DELETE").build();
 
   /**
    * Commit the specified upload session.
    */
-  commit = this.request("/upload/{id}/commit", true, { method: "POST" });
+  commit = this.spec("/upload/{id}/commit", "POST").build();
 
   /**
    * Delete the specified image from an upload session.
    */
-  delete = this.request("/upload/{session}/{file}", false, { method: "DELETE" });
+  delete = this.spec("/upload/{session}/{file}", "DELETE").build();
 
   /**
    * Delete a batch of images from the specified upload session.
    */
-  deleteBatch = this.request("/upload/{id}/batch", true, { method: "DELETE" });
+  deleteBatch = this.spec("/upload/{id}/batch", "DELETE").build();
 }

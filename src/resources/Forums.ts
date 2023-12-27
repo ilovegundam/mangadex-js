@@ -7,5 +7,5 @@ export default class ForumsResource extends BaseResource {
    *
    * A thread is only created if it doesn't exist yet; otherwise the preexisting thread is returned.
    */
-  createThread = this.request("/forums/thread", true, { method: "POST" });
+  createThread = this.spec("/forums/thread", "POST").build();
 }

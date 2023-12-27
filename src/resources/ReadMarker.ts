@@ -4,20 +4,20 @@ export default class ReadMarkerResource extends BaseResource {
   /**
    * Get a list of chapter ids marked as read for the specified manga.
    */
-  readMarker = this.request("/manga/{id}/read", true, {});
+  readMarker = this.spec("/manga/{id}/read", "GET").build();
 
   /**
    * Get a list of chapter ids marked as read for a list of manga.
    */
-  readMarkers = this.request("/manga/read", true, {});
+  readMarkers = this.spec("/manga/read", "GET").build();
 
   /**
    * Mark chapter ids as read and/or unread for a manga.
    */
-  batch = this.request("/manga/{id}/read", true, { method: "POST" });
+  batch = this.spec("/manga/{id}/read", "POST").build();
 
   /**
    * Get the read history associated with the current token.
    */
-  history = this.request("/user/history", false, {});
+  history = this.spec("/user/history", "GET").build();
 }

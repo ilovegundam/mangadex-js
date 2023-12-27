@@ -4,25 +4,25 @@ export default class SettingsResource extends BaseResource {
   /**
    * Get the latest settings template.
    */
-  latest = this.request("/settings/template", false, {});
+  latest = this.spec("/settings/template", "GET").build();
 
   /**
    * Create a new settings template.
    */
-  create = this.request("/settings/template", true, { method: "POST" });
+  create = this.spec("/settings/template", "POST").build();
 
   /**
    * Get the specified settings template by version id.
    */
-  get = this.request("/settings/template/{version}", false, {});
+  get = this.spec("/settings/template/{version}", "GET").build();
 
   /**
    * Get the settings associated with the current token.
    */
-  me = this.request("/settings", false, {});
+  me = this.spec("/settings", "GET").build();
 
   /**
    * Update the settings associated with the current token.
    */
-  update = this.request("/settings", true, { method: "POST" });
+  update = this.spec("/settings", "POST").build();
 }

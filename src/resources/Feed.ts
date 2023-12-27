@@ -4,10 +4,10 @@ export default class FeedResource extends BaseResource {
   /**
    * Get the followed manga feed associated with the current token.
    */
-  feed = this.request("/user/follows/manga/feed", false, {});
+  feed = this.spec("/user/follows/manga/feed", "GET").build();
 
   /**
    * Get the specified CustomList manga feed
    */
-  customListFeed = this.request("/list/{id}/feed", false, {});
+  customListFeed = this.spec("/list/{id}/feed", "GET").build();
 }

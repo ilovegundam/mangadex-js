@@ -6,5 +6,5 @@ export default class LegacyResource extends BaseResource {
    *
    * the `data.attributes.newId` field corresponds to the new uuid.
    */
-  mapLegacyIDs = this.request("/legacy/mapping", true, { method: "POST" });
+  mapLegacyIDs = this.spec("/legacy/mapping", "POST").build();
 }

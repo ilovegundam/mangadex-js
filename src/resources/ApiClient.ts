@@ -4,37 +4,35 @@ export default class ApiClientResource extends BaseResource {
   /**
    * Get a list of api clients created by the current token.
    */
-  list = this.request("/client", false, {});
+  list = this.spec("/client", "GET").build();
 
   /**
    * Create a new api client.
    */
-  create = this.request("/client", true, { method: "POST" });
+  create = this.spec("/client", "POST").build();
 
   /**
    * Get the specified api client.
    */
-  get = this.request("/client/{id}", false, {});
+  get = this.spec("/client/{id}", "GET").build();
 
   /**
    * Update the specified api client.
    */
-  update = this.request("/client/{id}", true, { method: "POST" });
+  update = this.spec("/client/{id}", "POST").build();
 
   /**
    * Delete the specified api client.
    */
-  delete = this.request("/client/{id}", false, { method: "DELETE" });
+  delete = this.spec("/client/{id}", "DELETE").build();
 
   /**
    * Get the specified api client's secret.
    */
-  getSecret = this.request("/client/{id}/secret", false, {});
+  getSecret = this.spec("/client/{id}/secret", "GET").build();
 
   /**
    * Regenerate the specified api client's secret.
    */
-  regenerateSecret = this.request("/client/{id}/secret", true, {
-    method: "POST",
-  });
+  regenerateSecret = this.spec("/client/{id}/secret", "POST").build();
 }

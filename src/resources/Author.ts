@@ -4,25 +4,25 @@ export default class AuthorResource extends BaseResource {
   /**
    * Get a list of authors.
    */
-  list = this.request("/author", false, {});
+  list = this.spec("/author", "GET").build();
 
   /**
    * Create a new author.
    */
-  create = this.request("/author", true, { method: "POST" });
+  create = this.spec("/author", "POST").build();
 
   /**
    * Get the specified author.
    */
-  get = this.request("/author/{id}", false, {});
+  get = this.spec("/author/{id}", "GET").build();
 
   /**
    * Update the specified author.
    */
-  update = this.request("/author/{id}", true, { method: "PUT" });
+  update = this.spec("/author/{id}", "PUT").build();
 
   /**
    * Delete the specified author.
    */
-  delete = this.request("/author/{id}", false, { method: "DELETE" });
+  delete = this.spec("/author/{id}", "DELETE").build();
 }

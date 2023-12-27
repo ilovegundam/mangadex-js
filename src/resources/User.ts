@@ -4,15 +4,15 @@ export default class UserResource extends BaseResource {
   /**
    * Get a list of users.
    */
-  list = this.request("/user", false, {});
+  list = this.spec("/user", "GET").build();
 
   /**
    * Get the specified user.
    */
-  get = this.request("/user/{id}", false, {});
+  get = this.spec("/user/{id}", "GET").build();
 
   /**
    * Get the user associated with the current token.
    */
-  me = this.request("/user/me", false, {});
+  me = this.spec("/user/me", "GET").build();
 }
