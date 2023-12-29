@@ -1,6 +1,6 @@
 import { ArgumentsInPath, Prettify } from "../utility/types";
 import { HttpMethod, DataMathod } from "../types/http";
-import { Axios, AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import HttpClient from "../http";
 import merge from "lodash/merge";
 

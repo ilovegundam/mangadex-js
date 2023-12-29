@@ -26,16 +26,10 @@ export default class HttpClient {
     this.axios = axios.create(this.options);
   }
 
-  async request<T = any>(
-    config: AxiosRequestConfig & { supressError?: boolean }
-  ): Promise<AxiosResponse<T>> {
+  async request<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     try {
       return await this.axios.request<T>(config);
     } catch (e) {
-      if (config.supressError && isAxiosError(e) && e.response) {
-        return e.response;
-      }
-
       throw isAxiosError(e) ? `${e.message}\n${JSON.stringify(e.response?.data, null, 2)}` : e;
     }
   }
